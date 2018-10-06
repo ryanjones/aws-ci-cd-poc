@@ -1,6 +1,6 @@
 {
     "Parameters": {
-        "SamMultipler": "1",
-        "OriginUrl": "*"
+        "SamMultipler": "12",
+        "OriginUrl": "http://waffles-s3bucket-1jgbj4azmy9s5.s3-website-us-east-1.amazonaws.com"
     }
 }
