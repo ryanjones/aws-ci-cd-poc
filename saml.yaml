@@ -1,4 +1,12 @@
 Transform: 'AWS::Serverless-2016-10-31'
+
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref Table
+
 Parameters:
     SamMultipler:
         Description: "SAM multiplier. Make this really big to have a party :)"
@@ -11,7 +19,6 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             Handler: index.handler
-            Runtime: nodejs4.3
             CodeUri: ./
             Environment:
                 Variables:
@@ -23,3 +30,12 @@ Resources:
                 Properties:
                   Path: /sam
                   Method: get
+    Table:
+        Type: AWS::Serverless::SimpleTable
+        Properties:
+        PrimaryKey:
+            Name: transaction_id
+            Type: String
+        ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
