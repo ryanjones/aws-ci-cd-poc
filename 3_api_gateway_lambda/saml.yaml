@@ -3,6 +3,21 @@ Transform: 'AWS::Serverless-2016-10-31'
 Globals:
   Function:
     Runtime: nodejs8.10
+  Api:
+    MethodSettings: [{
+        # LOGGING!!
+        "LoggingLevel": "INFO",
+
+        # METRICS!!
+        "MetricsEnabled": True,
+
+        # Trace-level Logging
+        "DataTraceEnabled": True,
+
+        # On all Paths & methods
+        "ResourcePath": "/*",
+        "HttpMethod": "*",
+    }]
 
 Parameters:
     SamMultipler:
@@ -28,23 +43,5 @@ Resources:
                 Properties:
                   Path: /sam
                   Method: get
-                  RestApiId: !Ref ServerlessAPI
-Resources:
-    ServerlessAPI:
-        Type: AWS::Serverless::Api
-            MethodSettings: [{
-                # Turn on Info logging
-                "LoggingLevel": "INFO",
-
-                # Enable Metrics
-                "MetricsEnabled": True,
-
-                # Trace-level Logging
-                "DataTraceEnabled": True,
-
-                # On all Paths & methods
-                "ResourcePath": "/*",
-                "HttpMethod": "*",
-            }]
 
 
