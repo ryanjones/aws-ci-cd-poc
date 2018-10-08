@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Main template for a CI/CD Serverless application."
 Parameters:
-  CustomerBucketName:
+  FormationBucketName:
     Type: String
   AppName:
     Type: String
@@ -46,7 +46,7 @@ Resources:
     Properties:
       Parameters:
         AppName: !Ref AppName
-      TemplateURL: !Sub "https://s3.amazonaws.com/${CustomBucketName}/pipeline-roles.yaml"
+      TemplateURL: !Sub "https://s3.amazonaws.com/${FormationBucketName}/pipeline-roles.yaml"
   ServerlessPipeline:
     Type: "AWS::CloudFormation::Stack"
     DependsOn: [ServerlessRoles]
@@ -64,4 +64,4 @@ Resources:
         CodePipelineRole: !GetAtt ServerlessRoles.Outputs.CodePipelineRole
         CloudformationRole: !GetAtt ServerlessRoles.Outputs.CloudformationDeployRole
         CodeBuildRole: !GetAtt ServerlessRoles.Outputs.CodeBuildRole
-      TemplateURL: !Sub "https://s3.amazonaws.com/${CustomBucketName}/pipeline.yaml"
+      TemplateURL: !Sub "https://s3.amazonaws.com/${FormationBucketName}/pipeline.yaml"
