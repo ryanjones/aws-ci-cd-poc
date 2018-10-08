@@ -22,3 +22,9 @@
 
 ## References
 - https://github.com/aws-samples/aws-serverless-samfarm
+
+
+## TODO
+- API GW Logging enabled
+- VPC w/ NAT
+
