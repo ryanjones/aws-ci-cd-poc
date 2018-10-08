@@ -30,12 +30,3 @@ Resources:
                 Properties:
                   Path: /sam
                   Method: get
-    Table:
-        Type: AWS::Serverless::SimpleTable
-        Properties:
-        PrimaryKey:
-            Name: transaction_id
-            Type: String
-        ProvisionedThroughput:
-            ReadCapacityUnits: 5
-            WriteCapacityUnits: 5
