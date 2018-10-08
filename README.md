@@ -1,10 +1,22 @@
 # aws-serverless-samfarm
-This repo contains the full code and templates needed to create a the Serverless SamFarm demo as shown in the What's New with AWS Lambda presentation at Re:Invent 2016.
 
-There are three separate parts to this application: the api, the pipeline which detects, builds, and deploys changes, and the website. 
-Lets start by getting that website up and running.
+## Steps (all from root)
+0. Clone this repo
+1. Create S3 bucket to store cloudformation templates (it requires S3 URLS)
+- ```aws cloudformation deploy --template-file ./1_start/create_s3.yaml --stack-name formationbucket --parameter-overrides CustomBucketName=formationbucket88```
+2. Upload cloudformation templates (codepipeline, lambda, gateway, etc.) so we can make changes to our templates
+- ``` ./2_create_pipeline/upload_cloudformation_templates.sh formationbucket88```
+- Files will be at https://s3.amazonaws.com/formationbucket88/*.yaml in a public bucket
+3. Create pipeline and point it at a github repo (make sure to update the githubtoken)
+- ```aws cloudformation deploy --template-file ./2_create_pipeline/main.yaml --stack-name pipeline --parameter-overrides CustomBucketName=pipeline99,AppName=epicapp01,GitHubRepoName=aws-ci-cd-poc,GitHubUser=ryanjones,GitHubToken=xyz,     ```
 
-## Step 1
+
+
+
+## Help
+- Delete a stack -> ```aws cloudformation delete-stack --stack-name formationbucket```
+
+
 
 ### Website
 In the [website directory](website/) there are four files:

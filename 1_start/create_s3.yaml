@@ -1,9 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Template for the S3 static website
+Description: Basic S3 bucket
+Parameters:
+    CustomBucketName:
+        Type: String
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName: !Ref CustomBucketName
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
