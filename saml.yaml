@@ -3,9 +3,6 @@ Transform: 'AWS::Serverless-2016-10-31'
 Globals:
   Function:
     Runtime: nodejs8.10
-    Environment:
-      Variables:
-        TABLE_NAME: !Ref Table
 
 Parameters:
     SamMultipler:
