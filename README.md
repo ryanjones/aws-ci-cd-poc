@@ -30,18 +30,4 @@
 
 
 
-  Api:
-    MethodSettings: [{
-        # LOGGING!!
-        "LoggingLevel": "INFO",
 
-        # METRICS!!
-        "MetricsEnabled": True,
-
-        # Trace-level Logging
-        "DataTraceEnabled": True,
-
-        # On all Paths & methods
-        "ResourcePath": "/*",
-        "HttpMethod": "*",
-    }]

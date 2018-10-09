@@ -28,5 +28,15 @@ Resources:
                 Properties:
                   Path: /sam
                   Method: get
-
+                  RestApiId: !Ref TheApiGateway
+    TheApiGateway:
+        Type: AWS::Serverless::Api
+        Properties:
+            StageName: 'Prod'
+            MethodSettings:
+                - HttpMethod: '*'
+                ResourcePath: /*
+                LoggingLevel: "INFO"
+                MetricsEnabled: true
+                DataTraceEnabled: true
 
