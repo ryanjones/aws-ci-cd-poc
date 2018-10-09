@@ -10,7 +10,7 @@
 3. Create pipeline and point it at a github repo (make sure to update the GitHubRepoName/GitHubUser/GitHubToken). The capabilities flag is needed when dealing with things that can affect permissions in your AWS Account (Role, User, Policy, etc.).
 - ```aws cloudformation deploy --template-file ./2_create_pipeline/main.yaml --stack-name pipeline --parameter-overrides FormationBucketName=formationbucket88 AppName=epicapp01 GitHubRepoName=aws-ci-cd-poc GitHubUser=ryanjones GitHubToken=xyz --capabilities CAPABILITY_NAMED_IAM  ```
 4. Create API Gateway + Lambda in VPC (NAT Gateway?)
-- ???
+- API GW Logging enabled - WIP (Broken)
 5. Build and deploy website to consume lambda
 - ???
 
@@ -25,7 +25,7 @@
 
 
 ## TODO
-- API GW Logging enabled
+
 - VPC w/ NAT
 
 
