@@ -35,8 +35,8 @@ Resources:
             StageName: 'Prod'
             MethodSettings:
                 - HttpMethod: '*'
-                ResourcePath: /*
-                LoggingLevel: "INFO"
-                MetricsEnabled: true
-                DataTraceEnabled: true
+                  ResourcePath: /*
+                  LoggingLevel: "INFO"
+                  MetricsEnabled: true
+                  DataTraceEnabled: true
 
