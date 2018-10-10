@@ -12,6 +12,27 @@ Parameters:
         Description: "The origin url to allow CORS requests from. This will be the base URL of your static SAM website."
         Type: "String"
 Resources:
+    CloudWatchRole:
+        Type: AWS::IAM::Role
+        Properties:
+            AssumeRolePolicyDocument:
+             Version: "2012-10-17"
+             Statement:
+              - Effect: Allow
+                Principal:
+                 Service:
+                  - "apigateway.amazonaws.com"
+                Action: "sts:AssumeRole"
+            Path: "/"
+            ManagedPolicyArns:
+             - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+    Account:
+        Type: AWS::ApiGateway::Account
+        Properties:
+            CloudWatchRoleArn:
+             "Fn::GetAtt":
+              - CloudWatchRole
+              - Arn
     GetSAMPartyCount:
         Type: AWS::Serverless::Function
         Properties:
@@ -40,24 +61,3 @@ Resources:
                   MetricsEnabled: true
                   DataTraceEnabled: true
 
-    CloudWatchRole:
-        Type: AWS::IAM::Role
-        Properties:
-            AssumeRolePolicyDocument:
-             Version: "2012-10-17"
-             Statement:
-              - Effect: Allow
-                Principal:
-                 Service:
-                  - "apigateway.amazonaws.com"
-                Action: "sts:AssumeRole"
-            Path: "/"
-            ManagedPolicyArns:
-             - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
-    Account:
-        Type: AWS::ApiGateway::Account
-        Properties:
-            CloudWatchRoleArn:
-             "Fn::GetAtt":
-              - CloudWatchRole
-              - Arn
