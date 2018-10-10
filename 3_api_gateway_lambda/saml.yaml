@@ -46,18 +46,43 @@ Resources:
             AssumeRolePolicyDocument:
             Version: "2012-10-17"
             Statement:
-            - Effect: Allow
-                Principal:
+             - Effect: Allow
+               Principal:
                 Service:
-                - "apigateway.amazonaws.com"
-                Action: "sts:AssumeRole"
+                 - "apigateway.amazonaws.com"
+               Action: "sts:AssumeRole"
             Path: "/"
             ManagedPolicyArns:
-            - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
-        Account:
+              - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+    Account:
         Type: AWS::ApiGateway::Account
         Properties:
             CloudWatchRoleArn:
-            "Fn::GetAtt":
-            - CloudWatchRole
-            - Arn
+             "Fn::GetAtt":
+             - CloudWatchRole
+             - Arn
+
+
+
+
+  CloudWatchRole:
+   Type: AWS::IAM::Role
+   Properties:
+    AssumeRolePolicyDocument:
+     Version: "2012-10-17"
+     Statement:
+      - Effect: Allow
+        Principal:
+         Service:
+          - "apigateway.amazonaws.com"
+        Action: "sts:AssumeRole"
+    Path: "/"
+    ManagedPolicyArns:
+     - "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+  Account:
+   Type: AWS::ApiGateway::Account
+   Properties:
+    CloudWatchRoleArn:
+     "Fn::GetAtt":
+      - CloudWatchRole
+      - Arn            
